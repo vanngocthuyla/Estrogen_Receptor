@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --partition=normal
+#SBATCH --time=24:00:00
+#SBATCH --ntasks=4
+#SBATCH --mem=4096M
+#SBATCH -o /home/vla/python/ER/fitting/ER_alpha.log 
+#SBATCH -e /home/vla/python/ER/fitting/ER_alpha.log 
+
+module load miniconda/3
+source /share/apps/miniconda3/etc/profile.d/conda.sh
+conda activate gci 
+
+cd /home/vla/python/ER/fitting
+date
+python /home/vla/python/ER/scripts/run_ER_alpha.py --out_dir /home/vla/python/ER/fitting --niters 1000  --nburn 200  --nchains 4 
+date
